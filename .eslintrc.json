@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@shopify/typescript",
+    "plugin:@shopify/typescript-type-checking",
+    "plugin:@shopify/react",
+    "plugin:@shopify/node",
+    "plugin:@shopify/prettier"
+  ],
+  "parserOptions": {
+    "project": "tsconfig.json"
+  }
+}
