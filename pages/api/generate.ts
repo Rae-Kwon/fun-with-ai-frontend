@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import {Request, Response} from 'express';
 import {Configuration, OpenAIApi} from 'openai';
 
@@ -10,10 +11,9 @@ export default async (req: Request, res: Response) => {
   try {
     const response = await openai.createCompletion('text-curie-001', {
       prompt: generatePrompt(req.body.prompt),
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       max_tokens: 50,
-      temperature: 0.5,
-      stop: [' User:', ' Response:'],
+      top_p: 1,
+      stop: ['Mood', 'Song:'],
     });
     const result = response.data.choices;
     if (result) {
@@ -25,36 +25,50 @@ export default async (req: Request, res: Response) => {
 };
 
 const generatePrompt = (prompt: string) => {
-  return `Suggest a song depending on the person's mood.
+  return `A song for when I'm feeling:
   
-  User: I'm feeling sad.
-  Response: I found a sad song. Mad World by Tears for Fears.
-  User: I'm sad.
-  Response: Here's a sad song. Everybody Hurts by R.E.M.
-  User: I'm feeling happy.
-  Response: I found a happy song. Happy by Pharrel Williams.
-  User: I'm happy.
-  Response: Here's a happy song. Don't Worry Be Happy by Bobby McFerrin.
-  User: I'm feeling angry.
-  Response: Here's a song to let out your anger. Psychosocial by Slipknot.
-  User: I'm angry.
-  Response: I found a song to let out your anger. Killing in the Name by Rage Against the Machine.
-  User: I want something light-hearted.
-  Response: Here's something light-hearted. Walking on Sunshine by Katrina & The Waves.
-  User: Something light-hearted.
-  Response: Here's a light-hearted song. Don't Stop Me Now by Queen.
-  User: I want to celebrate.
-  Response: Here's a song to celebrate to. Good as Hell by Lizzo.
-  User: I'm feeling celebratory.
-  Response: Celebrate to this. CAN'T STOP THE FEELING! by Justin Timberlake.
-  User: I'm feeling funky.
-  Response: This'll get you in the groove. Juice by Lizzo.
-  User: Play something funky.
-  Response: Here's something funky. Never Catch Me by Flying Lotus ft. Kendrick Lamar
-  User: I want to jam out.
-  Response: Jam out to this. Wax Simulacra by The Mars Volta.
-  User: Play a song to jam out to.
-  Response: You can jam to this. Crazy Train by Ozzy Osbourne.
-  User: ${prompt}
-  Response:`;
+  Mood: sad unhappy sorrowful dejected depressed miserable
+  Song: Mad World by Tears for Fears.
+  Mood: sad unhappy sorrowful dejected depressed miserable
+  Song: Everybody Hurts by R.E.M.
+  Mood: Sad Unhappy Sorrowful Dejected Depressed Miserable
+  Song: Landslide by Fleetwood Mac.
+  Mood: happy cheerful merry joyful jovial delighted
+  Song: Happy by Pharrel Williams.
+  Mood: happy cheerful merry joyful jovial delighted
+  Song: Don't Worry Be Happy by Bobby McFerrin.
+  Mood: Happy Cheerful Merry Joyful Jovial Delighted
+  Song: Valerie by Mark Ronson ft. Amy Winehouse.
+  Mood: angry mad irate vexed irritated exasperated indignant irked
+  Song: Psychosocial by Slipknot.
+  Mood: angry mad irate vexed irritated exasperated indignant irked
+  Song: Killing in the Name by Rage Against the Machine.
+  Mood: Angry Mad Irate Vexed Irritated Exasperated Indignant Irked
+  Song: F*ck You by CeeLo Green.
+  Mood: light-hearted buoyant jolly playful upbeat
+  Song: Walking on Sunshine by Katrina & The Waves.
+  Mood: light-hearted buoyant jolly playful upbeat
+  Song: Don't Stop Me Now by Queen.
+  Mood: Light-hearted Buoyant Jolly Playful Upbeat
+  Song: Dancing Queen by ABBA.
+  Mood: celebrate commemorate acknowledge toast
+  Song: Good as Hell by Lizzo.
+  Mood: celebrate commemorate acknowledge toast
+  Song: CAN'T STOP THE FEELING! by Justin Timberlake.
+  Mood: Celebrate Commemorate Acknowledge Toast
+  Song: Celebration by Kool & The Gang.
+  Mood: funky groovy bluesy jazzy
+  Song: Juice by Lizzo.
+  Mood: funky groovy bluesy jazzy
+  Song: Never Catch Me by Flying Lotus ft. Kendrick Lamar
+  Mood: Funky Groovy Bluesy Jazzy
+  Song: Give Up The Funk by Parliament Funkadelic.
+  Mood: jam head bang dance
+  Song: Wax Simulacra by The Mars Volta.
+  Mood: jam head bang dance
+  Song: Crazy Train by Ozzy Osbourne.
+  Mood: Jam Head bang Dance
+  Song: Bohemian Rhapsody by Queen.
+  Mood: ${prompt}
+  Song:`;
 };
