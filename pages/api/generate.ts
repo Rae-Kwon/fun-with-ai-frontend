@@ -17,7 +17,7 @@ export default async (req: Request, res: Response) => {
     });
     const result = response.data.choices;
     if (result) {
-      res.status(200).json({result: result[0].text});
+      res.status(200).json({id: response.data.id, result: result[0].text});
     }
   } catch (error: any) {
     res.status(503).json({result: error.message});

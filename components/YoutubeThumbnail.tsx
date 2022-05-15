@@ -15,7 +15,6 @@ const YoutubeThumbnail = ({
   let videoUrlLink = '';
   if (thumbnail?.url) thumbnailUrl = thumbnail.url;
   if (videoUrl) videoUrlLink = videoUrl;
-
   return (
     <a href={videoUrl}>
       <Image

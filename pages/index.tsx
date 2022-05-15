@@ -1,34 +1,46 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type {NextPage} from 'next';
 import Head from 'next/head';
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
+import {v4 as uuidv4} from 'uuid';
 
 import PromptForm from '../components/PromptForm';
 import YoutubeThumbnail from '../components/YoutubeThumbnail';
 import Loading from '../components/Loading';
 
-const ShowVideo = (videoResult: any) => {
-  const videoUrl = `https://www.youtube.com/watch?v=${videoResult.id}`;
-  if (videoResult.thumbnail) {
+interface ResultType {
+  prompt: {id: string; message: string};
+  res: {id: string; message: string; video: VideoResultType};
+}
+
+interface VideoResultType {
+  id: string;
+  thumbnail: any;
+  title: string;
+}
+
+const ShowResponse = (res: any) => {
+  if (res.message !== undefined && res.video !== undefined) {
+    const {id, title, thumbnail} = res.video;
+    const videoUrl = `https://www.youtube.com/watch?v=${id}`;
     return (
-      <YoutubeThumbnail
-        videoUrl={videoUrl}
-        title={videoResult.title}
-        thumbnail={videoResult.thumbnail}
-      />
+      <>
+        <p>Lil Nost X</p>
+        <YoutubeThumbnail
+          videoUrl={videoUrl}
+          title={title}
+          thumbnail={thumbnail}
+        />
+        {res.message}
+      </>
     );
   }
-  return <Loading />;
+  if (res === undefined) return <Loading />;
 };
 
 const Home: NextPage = () => {
   const [userInput, setUserInput] = useState('');
-  const [result, setResult] = useState();
-  const [videoResult, setVideoResult] = useState({
-    id: null,
-    thumbnail: null,
-    title: null,
-  });
+  const [results, setResults] = useState<ResultType[]>([]);
 
   const getYoutubeSearchResults = async (song: string) => {
     const youtubeApiKey = process.env.NEXT_PUBLIC_YOUTUBE_KEY;
@@ -43,15 +55,15 @@ const Home: NextPage = () => {
     );
     const result = await response.json();
     const resultVideo = result.items[0];
-    console.log(resultVideo);
     const resultVideoId = resultVideo.id.videoId;
     const resultVideoThumbnail = resultVideo.snippet.thumbnails.high;
     const resultVideoTitle = resultVideo.snippet.title;
-    setVideoResult({
+    const resultVideoObj = {
       id: resultVideoId,
       thumbnail: resultVideoThumbnail,
       title: resultVideoTitle,
-    });
+    };
+    return resultVideoObj;
   };
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -64,9 +76,19 @@ const Home: NextPage = () => {
         },
         body: JSON.stringify({prompt: userInput}),
       });
-      const data = await response.json();
-      getYoutubeSearchResults(data.result);
-      setResult(data.result);
+      const responseData = await response.json();
+      const youtubeData = await getYoutubeSearchResults(responseData.result);
+      setResults((prevState) => [
+        ...prevState,
+        {
+          prompt: {id: uuidv4(), message: userInput},
+          res: {
+            id: responseData.id,
+            message: responseData.result,
+            video: youtubeData,
+          },
+        },
+      ]);
       setUserInput('');
     })();
   };
@@ -80,8 +102,12 @@ const Home: NextPage = () => {
           userInput={userInput}
           setUserInput={setUserInput}
         />
-        {ShowVideo(videoResult)}
-        <div>{result}</div>
+        {results.map(({prompt, res}) => (
+          <React.Fragment key={uuidv4()}>
+            <section key={prompt.id}>{prompt.message}</section>
+            <section key={res.id}>{ShowResponse(res)}</section>
+          </React.Fragment>
+        ))}
       </main>
     </>
   );
