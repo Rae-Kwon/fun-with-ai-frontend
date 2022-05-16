@@ -7,6 +7,7 @@ import {v4 as uuidv4} from 'uuid';
 import PromptForm from '../components/PromptForm';
 import YoutubeThumbnail from '../components/YoutubeThumbnail';
 import Loading from '../components/Loading';
+import ClearStorage from '../components/ClearStorage';
 
 interface ResultType {
   prompt: {id: string; message: string};
@@ -47,6 +48,12 @@ const getFromLocalStorage = (key: string) => {
 const setToLocalStorage = (key: string, value: string) => {
   if (typeof window !== 'undefined') {
     return window.localStorage.setItem(key, value);
+  }
+};
+
+const removeFromLocalStorage = (key: string) => {
+  if (typeof window !== 'undefined') {
+    return window.localStorage.removeItem(key);
   }
 };
 
@@ -122,6 +129,7 @@ const Home: NextPage = () => {
     <>
       <main>
         <h1>How are you feeling?</h1>
+        <ClearStorage clear={removeFromLocalStorage} setResults={setResults} />
         <PromptForm
           submitHandler={submitHandler}
           userInput={userInput}
