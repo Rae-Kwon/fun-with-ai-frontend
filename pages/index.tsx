@@ -79,7 +79,6 @@ const Home: NextPage = () => {
       const responseData = await response.json();
       const youtubeData = await getYoutubeSearchResults(responseData.result);
       setResults((prevState) => [
-        ...prevState,
         {
           prompt: {id: uuidv4(), message: userInput},
           res: {
@@ -88,6 +87,7 @@ const Home: NextPage = () => {
             video: youtubeData,
           },
         },
+        ...prevState,
       ]);
       setUserInput('');
     })();
@@ -102,7 +102,7 @@ const Home: NextPage = () => {
           userInput={userInput}
           setUserInput={setUserInput}
         />
-        {results.map(({prompt, res}) => (
+        {[...results].reverse().map(({prompt, res}) => (
           <React.Fragment key={uuidv4()}>
             <section key={prompt.id}>{prompt.message}</section>
             <section key={res.id}>{ShowResponse(res)}</section>
