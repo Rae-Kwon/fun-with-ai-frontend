@@ -9,6 +9,8 @@ import YoutubeThumbnail from '../components/YoutubeThumbnail';
 import Loading from '../components/Loading';
 import ClearStorage from '../components/ClearStorage';
 
+import styles from './Home.module.css';
+
 interface ResultType {
   prompt: {id: string; message: string};
   res: {id: string; message: string; video: VideoResultType};
@@ -127,20 +129,25 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <main>
-        <h1>How are you feeling?</h1>
-        <ClearStorage clear={removeFromLocalStorage} setResults={setResults} />
-        <PromptForm
-          submitHandler={submitHandler}
-          userInput={userInput}
-          setUserInput={setUserInput}
-        />
+      <main className={styles.chatbox}>
+        <header className={styles.header}>
+          <h1 className={styles.heading}>How are you feeling?</h1>
+          <ClearStorage
+            clear={removeFromLocalStorage}
+            setResults={setResults}
+          />
+        </header>
         {[...results].reverse().map(({prompt, res}) => (
           <React.Fragment key={uuidv4()}>
             <section key={prompt.id}>{prompt.message}</section>
             <section key={res.id}>{ShowResponse(res)}</section>
           </React.Fragment>
         ))}
+        <PromptForm
+          submitHandler={submitHandler}
+          userInput={userInput}
+          setUserInput={setUserInput}
+        />
       </main>
     </>
   );

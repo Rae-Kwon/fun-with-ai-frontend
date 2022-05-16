@@ -1,0 +1,13 @@
+.chatbox {
+  display: flex;
+  flex-direction: column;
+  border: 2px black solid;
+  width: 100%;
+  overflow: scroll;
+}
+
+.header {
+  position: static;
+  display: flex;
+  justify-content: center;
+}
