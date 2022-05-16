@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type {NextPage} from 'next';
 import Head from 'next/head';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
 
 import PromptForm from '../components/PromptForm';
@@ -36,6 +36,18 @@ const ShowResponse = (res: any) => {
     );
   }
   if (res === undefined) return <Loading />;
+};
+
+const getFromLocalStorage = (key: string) => {
+  if (typeof window !== 'undefined') {
+    return window.localStorage.getItem(key);
+  }
+};
+
+const setToLocalStorage = (key: string, value: string) => {
+  if (typeof window !== 'undefined') {
+    return window.localStorage.setItem(key, value);
+  }
 };
 
 const Home: NextPage = () => {
@@ -92,6 +104,19 @@ const Home: NextPage = () => {
       setUserInput('');
     })();
   };
+
+  useEffect(() => {
+    const savedResults = getFromLocalStorage('results');
+    if (savedResults !== null) {
+      const resultsParsed = JSON.parse(savedResults!);
+      setResults(resultsParsed);
+    }
+  }, []);
+
+  useEffect(() => {
+    const resultsToStore = JSON.stringify(results);
+    setToLocalStorage('results', resultsToStore);
+  }, [results]);
 
   return (
     <>
