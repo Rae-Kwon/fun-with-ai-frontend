@@ -4,6 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ['i.ytimg.com'],
+    imageSizes: [240, 360, 480],
   },
 };
 

@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type {NextPage} from 'next';
 import Head from 'next/head';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
+import cn from 'classnames';
 
 import PromptForm from '../components/PromptForm';
 import YoutubeThumbnail from '../components/YoutubeThumbnail';
 import Loading from '../components/Loading';
 import ClearStorage from '../components/ClearStorage';
+import AiProfile from '../components/AiProfile';
+
+import styles from './Home.module.css';
 
 interface ResultType {
   prompt: {id: string; message: string};
@@ -26,17 +30,30 @@ const ShowResponse = (res: any) => {
     const videoUrl = `https://www.youtube.com/watch?v=${id}`;
     return (
       <>
-        <p>Lil Nost X</p>
-        <YoutubeThumbnail
-          videoUrl={videoUrl}
-          title={title}
-          thumbnail={thumbnail}
-        />
-        {res.message}
+        <YoutubeThumbnail title={title} thumbnail={thumbnail} />
+        <a href={videoUrl} target="_blank" rel="noreferrer">
+          <div className={styles.aiResponseContainer}>
+            {res.message}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              className={styles.externalLinkIcon}
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </div>
+        </a>
       </>
     );
   }
-  if (res === undefined) return <Loading />;
+  return <Loading />;
 };
 
 const getFromLocalStorage = (key: string) => {
@@ -58,6 +75,7 @@ const removeFromLocalStorage = (key: string) => {
 };
 
 const Home: NextPage = () => {
+  const messageEndRef = useRef<null | HTMLDivElement>(null);
   const [userInput, setUserInput] = useState('');
   const [results, setResults] = useState<ResultType[]>([]);
 
@@ -112,6 +130,14 @@ const Home: NextPage = () => {
     })();
   };
 
+  const scrollToBottom = () => {
+    messageEndRef.current?.scrollIntoView({behavior: 'smooth'});
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [results]);
+
   useEffect(() => {
     const savedResults = getFromLocalStorage('results');
     if (savedResults !== null) {
@@ -126,23 +152,43 @@ const Home: NextPage = () => {
   }, [results]);
 
   return (
-    <>
-      <main>
-        <h1>How are you feeling?</h1>
-        <ClearStorage clear={removeFromLocalStorage} setResults={setResults} />
-        <PromptForm
-          submitHandler={submitHandler}
-          userInput={userInput}
-          setUserInput={setUserInput}
-        />
-        {[...results].reverse().map(({prompt, res}) => (
-          <React.Fragment key={uuidv4()}>
-            <section key={prompt.id}>{prompt.message}</section>
-            <section key={res.id}>{ShowResponse(res)}</section>
-          </React.Fragment>
-        ))}
-      </main>
-    </>
+    <main className={styles.chatbox}>
+      <div className={styles.chatContainer}>
+        <header className={styles.header}>
+          <AiProfile />
+          <ClearStorage
+            clear={removeFromLocalStorage}
+            setResults={setResults}
+          />
+        </header>
+        <section className={styles.chat}>
+          {[...results].reverse().map(({prompt, res}) => (
+            <React.Fragment key={uuidv4()}>
+              <section key={prompt.id} className={styles.userPrompt}>
+                <div className={cn(styles.message, styles.userMessage)}>
+                  {prompt.message}
+                </div>
+              </section>
+              <section
+                key={res.id}
+                className={cn(styles.message, styles.aiResponse)}
+              >
+                {ShowResponse(res)}
+              </section>
+            </React.Fragment>
+          ))}
+
+          <div className={styles.chatEnd} ref={messageEndRef} />
+        </section>
+        <footer className={styles.chatbar}>
+          <PromptForm
+            submitHandler={submitHandler}
+            userInput={userInput}
+            setUserInput={setUserInput}
+          />
+        </footer>
+      </div>
+    </main>
   );
 };
 
