@@ -1,8 +1,10 @@
+import type {KeyboardEvent, MouseEvent} from 'react';
+
 import styles from './ClearStorage.module.css';
 
 interface ResultType {
-  prompt?: {id: string; message: string};
-  res: {id: string; message: string; video?: VideoResultType};
+  prompt: {id: string; message: string};
+  res: {id: string; message: string; video?: VideoResultType | string};
 }
 
 interface VideoResultType {
@@ -17,33 +19,42 @@ interface ClearStorageProps {
 }
 
 const ClearStorage = ({clear, setResults}: ClearStorageProps) => {
-  const clickHandler = () => {
-    clear('results');
-    setResults([]);
+  const clearHandler = (event: KeyboardEvent | MouseEvent) => {
+    if (
+      (event as KeyboardEvent).key === 'Enter' ||
+      (event as MouseEvent).type === 'click'
+    ) {
+      clear('results');
+      setResults([]);
+    }
   };
 
   return (
     <label htmlFor="clearButton" className={styles.clearContainer}>
-      <span className={styles.tooltipText}>Clear Chat</span>
       <input
         type="reset"
         id="clearButton"
         className={styles.clearButton}
         aria-label="Clear AI conversation"
-        onClick={clickHandler}
       />
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={styles.clearIcon}
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          fillRule="evenodd"
-          d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
-          clipRule="evenodd"
-        />
-      </svg>
+      <div className={styles.clearIconContainer}>
+        <span className={styles.tooltipText}>Clear Chat</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className={styles.clearIcon}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          tabIndex={0}
+          onClick={clearHandler}
+          onKeyDown={clearHandler}
+        >
+          <path
+            fillRule="evenodd"
+            d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </div>
     </label>
   );
 };
