@@ -1,0 +1,11 @@
+.heading {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.profilePhoto {
+  border-radius: 50%;
+}

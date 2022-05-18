@@ -9,6 +9,7 @@ import PromptForm from '../components/PromptForm';
 import YoutubeThumbnail from '../components/YoutubeThumbnail';
 import Loading from '../components/Loading';
 import ClearStorage from '../components/ClearStorage';
+import AiProfile from '../components/AiProfile';
 
 import styles from './Home.module.css';
 
@@ -154,7 +155,7 @@ const Home: NextPage = () => {
     <main className={styles.chatbox}>
       <div className={styles.chatContainer}>
         <header className={styles.header}>
-          <h1 className={styles.heading}>Lil Nost X</h1>
+          <AiProfile />
           <ClearStorage
             clear={removeFromLocalStorage}
             setResults={setResults}

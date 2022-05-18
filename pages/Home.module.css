@@ -15,13 +15,7 @@
   border-bottom: 1px solid grey;
   background-color: white;
   z-index: 1;
-  padding-left: 9.091%;
-}
-
-.heading {
-  display: flex;
-  justify-content: flex-start;
-  width: 90%;
+  padding-left: 3%;
 }
 
 .chat {
