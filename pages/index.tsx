@@ -10,12 +10,13 @@ import YoutubeThumbnail from '../components/YoutubeThumbnail';
 import Loading from '../components/Loading';
 import ClearStorage from '../components/ClearStorage';
 import AiProfile from '../components/AiProfile';
+import WelcomeMessage from '../components/WelcomeMessage';
 
 import styles from './Home.module.css';
 
 interface ResultType {
-  prompt: {id: string; message: string};
-  res: {id: string; message: string; video: VideoResultType};
+  prompt?: {id: string; message: string};
+  res: {id: string; message: string; video?: VideoResultType};
 }
 
 interface VideoResultType {
@@ -162,11 +163,12 @@ const Home: NextPage = () => {
           />
         </header>
         <section className={styles.chat}>
+          <WelcomeMessage />
           {[...results].reverse().map(({prompt, res}) => (
             <React.Fragment key={uuidv4()}>
-              <section key={prompt.id} className={styles.userPrompt}>
+              <section key={prompt?.id} className={styles.userPrompt}>
                 <div className={cn(styles.message, styles.userMessage)}>
-                  {prompt.message}
+                  {prompt?.message}
                 </div>
               </section>
               <section
