@@ -1,12 +1,8 @@
-import type {Dispatch, FormEvent, KeyboardEvent} from 'react';
+import type {FormEvent, KeyboardEvent} from 'react';
+
+import type {PresetPromptProps} from '../types';
 
 import styles from './PresetPrompt.module.css';
-
-interface PresetPromptProps {
-  prompt: string;
-  promptHandler: (event: FormEvent<HTMLButtonElement>) => void;
-  setOpen: Dispatch<boolean>;
-}
 
 const PresetPrompt = ({prompt, promptHandler, setOpen}: PresetPromptProps) => {
   const prompOnKeyDownHandler = (

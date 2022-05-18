@@ -1,9 +1,11 @@
+import type {ShowResponseProps} from '../types/propTypes';
+
 import YoutubeThumbnail from './YoutubeThumbnail';
 import styles from './ShowResponse.module.css';
 
-const ShowResponse = ({res}: any) => {
-  if (res?.video !== undefined) {
-    const videoDetails = res?.video;
+const ShowResponse = ({res}: ShowResponseProps) => {
+  if (res.video !== undefined) {
+    const videoDetails = res.video;
     const videoUrl = `https://www.youtube.com/watch?v=${videoDetails.id}`;
     return (
       <>
@@ -13,7 +15,7 @@ const ShowResponse = ({res}: any) => {
         />
         <a href={videoUrl} target="_blank" rel="noreferrer">
           <div className={styles.aiResponseContainer}>
-            {res?.message}
+            {res.message}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

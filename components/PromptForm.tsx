@@ -1,13 +1,9 @@
-import type {Dispatch, FormEvent, KeyboardEvent} from 'react';
+import type {KeyboardEvent} from 'react';
+
+import type {PromptFormProps} from '../types';
 
 import styles from './PromptForm.module.css';
 import PresetPrompts from './PresetPrompts';
-
-interface PromptFormProps {
-  submitHandler: (input: string, event?: FormEvent<HTMLFormElement>) => void;
-  userInput: string;
-  setUserInput: Dispatch<string>;
-}
 
 const PromptForm = ({
   submitHandler,

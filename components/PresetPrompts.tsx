@@ -3,12 +3,10 @@ import {useState} from 'react';
 import cn from 'classnames';
 import {v4 as uuidv4} from 'uuid';
 
+import type {PresetPromptsProps} from '../types';
+
 import styles from './PresetPrompts.module.css';
 import PresetPrompt from './PresetPrompt';
-
-interface PresetPromptsProps {
-  submitHandler: (input: string, event?: FormEvent<HTMLFormElement>) => void;
-}
 
 const PresetPrompts = ({submitHandler}: PresetPromptsProps) => {
   const [isOpen, setOpen] = useState(false);

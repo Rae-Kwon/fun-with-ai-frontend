@@ -6,6 +6,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {v4 as uuidv4} from 'uuid';
 import cn from 'classnames';
 
+import type {ResultType} from '../types';
 import PromptForm from '../components/PromptForm';
 import ClearStorage from '../components/ClearStorage';
 import AiProfile from '../components/AiProfile';
@@ -14,17 +15,6 @@ import ShowResponse from '../components/ShowResponse';
 import UserPrompt from '../components/UserPrompt';
 
 import styles from './Home.module.css';
-
-interface ResultType {
-  res: {id: string; message: string; video?: VideoResultType | string};
-  prompt: {id: string; message: string};
-}
-
-interface VideoResultType {
-  id: string;
-  thumbnail: any;
-  title: string;
-}
 
 const getFromLocalStorage = (key: string) => {
   if (typeof window !== 'undefined') {
@@ -48,7 +38,6 @@ const Home: NextPage = () => {
   const messageEndRef = useRef<null | HTMLDivElement>(null);
   const [userInput, setUserInput] = useState('');
   const [results, setResults] = useState<ResultType[]>([]);
-  const [isLoading, setLoading] = useState(true);
 
   const getYoutubeSearchResults = async (song: string) => {
     const youtubeApiKey = process.env.NEXT_PUBLIC_YOUTUBE_KEY;
@@ -158,11 +147,7 @@ const Home: NextPage = () => {
                 key={res.id}
                 className={cn(styles.message, styles.aiResponse)}
               >
-                <ShowResponse
-                  res={res}
-                  isLoading={isLoading}
-                  setLoading={setLoading}
-                />
+                <ShowResponse res={res} />
               </section>
             </React.Fragment>
           ))}

@@ -1,22 +1,8 @@
 import type {KeyboardEvent, MouseEvent} from 'react';
 
+import type {ClearStorageProps} from '../types';
+
 import styles from './ClearStorage.module.css';
-
-interface ResultType {
-  prompt: {id: string; message: string};
-  res: {id: string; message: string; video?: VideoResultType | string};
-}
-
-interface VideoResultType {
-  id: string;
-  thumbnail: any;
-  title: string;
-}
-
-interface ClearStorageProps {
-  clear: any;
-  setResults: React.Dispatch<React.SetStateAction<ResultType[]>>;
-}
 
 const ClearStorage = ({clear, setResults}: ClearStorageProps) => {
   const clearHandler = (event: KeyboardEvent | MouseEvent) => {
