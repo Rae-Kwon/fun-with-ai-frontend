@@ -6,4 +6,16 @@
   padding: 0.5rem;
   border-radius: 25px;
   border: none;
+  transition: all 250ms ease-in-out;
+}
+
+.presetPrompt:hover {
+  border: none;
+  transform: scale(1.25);
+}
+
+.presetPrompt:focus {
+  border: none;
+  outline-color: #0071bc;
+  transform: scale(1.25);
 }
