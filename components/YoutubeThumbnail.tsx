@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import type {YoutubeThumbnailProps} from '../types';
 
+import Error from './Error';
 import styles from './YoutubeThumbnail.module.css';
 
 const YoutubeThumbnail = ({title, thumbnail}: YoutubeThumbnailProps) => {
@@ -23,7 +24,7 @@ const YoutubeThumbnail = ({title, thumbnail}: YoutubeThumbnailProps) => {
     );
   }
 
-  return <div className={styles.thumbnail}>Error Could Not Load</div>;
+  return <Error />;
 };
 
 export default YoutubeThumbnail;
