@@ -1,11 +1,8 @@
 import Image from 'next/image';
 
-import styles from './YoutubeThumbnail.module.css';
+import type {YoutubeThumbnailProps} from '../types';
 
-interface YoutubeThumbnailProps {
-  title?: string;
-  thumbnail?: {url: string};
-}
+import styles from './YoutubeThumbnail.module.css';
 
 const YoutubeThumbnail = ({title, thumbnail}: YoutubeThumbnailProps) => {
   let thumbnailUrl = '';
