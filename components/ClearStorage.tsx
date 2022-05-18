@@ -24,7 +24,7 @@ const ClearStorage = ({clear, setResults}: ClearStorageProps) => {
 
   return (
     <label htmlFor="clearButton" className={styles.clearContainer}>
-      <span className={styles.tooltipText}>Clear Messages</span>
+      <span className={styles.tooltipText}>Clear Chat</span>
       <input
         type="reset"
         id="clearButton"
