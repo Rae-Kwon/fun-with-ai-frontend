@@ -1,8 +1,8 @@
 import styles from './ClearStorage.module.css';
 
 interface ResultType {
-  prompt: {id: string; message: string};
-  res: {id: string; message: string; video: VideoResultType};
+  prompt?: {id: string; message: string};
+  res: {id: string; message: string; video?: VideoResultType};
 }
 
 interface VideoResultType {
