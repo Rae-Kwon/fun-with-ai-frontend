@@ -1,5 +1,6 @@
 .chatbar {
   display: flex;
+  width: 100vw;
   height: 100%;
   justify-content: space-evenly;
 }
@@ -7,16 +8,15 @@
 .chatInputContainer {
   display: flex;
   align-items: center;
+  width: 80%;
 }
 
 .chatInput {
-  width: 95vw;
+  width: 100%;
   height: 50%;
   padding: 0 2%;
-  margin-left: 2%;
   border: 1px solid grey;
   border-radius: 25px;
-  flex-grow: 1;
 }
 
 .submitButton {
@@ -26,16 +26,13 @@
 .sendButtonContainer {
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 100%;
 }
 
 .sendButtonContainer .tooltipText {
   visibility: hidden;
   width: max-content;
   max-width: 100%;
-  background-color: black;
+  background-color: hsl(0, 0%, 20%);
   opacity: 0.8;
   color: #fff;
   text-align: center;
@@ -59,14 +56,15 @@
 }
 
 .sendButtonIconContainer {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-color: hsl(0, 0%, 100%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .sendButtonIconContainer:hover {
-  height: 45px;
-  width: 45px;
-  border-radius: 50%;
   background-color: hsl(0, 0%, 80%);
 }

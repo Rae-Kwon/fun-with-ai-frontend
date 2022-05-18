@@ -3,7 +3,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['i.ytimg.com'],
+    domains: ['i.ytimg.com', 'yt3.ggpht.com'],
     imageSizes: [240, 360, 480],
   },
 };

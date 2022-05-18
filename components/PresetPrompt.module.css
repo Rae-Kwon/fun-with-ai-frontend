@@ -1,0 +1,9 @@
+.presetPrompt {
+  cursor: pointer;
+  user-select: none;
+  color: white;
+  background-color: #1982fc;
+  padding: 0.5rem;
+  border-radius: 25px;
+  border: none;
+}
