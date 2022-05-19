@@ -1,0 +1,113 @@
+.chatbox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid var(--header-bottom);
+  background-color: var(--container);
+  z-index: 1;
+  padding-left: 3%;
+}
+
+.chat {
+  margin: 6rem 0 8rem 0;
+  padding: 1rem 3%;
+  word-wrap: break-word;
+}
+
+.chatEnd {
+  float: left;
+  clear: both;
+}
+
+.chatbar {
+  height: 6rem;
+  position: fixed;
+  bottom: 0;
+  background-color: var(--container);
+}
+
+.userPrompt {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message {
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  line-height: 24px;
+}
+
+.message::before {
+  content: '';
+  width: 20px;
+  position: absolute;
+  bottom: 0;
+  height: 25px;
+}
+
+.message::after {
+  content: '';
+  background-color: var(--background);
+  width: 26px;
+  position: absolute;
+  bottom: 0;
+  height: 25px;
+}
+
+.userMessage {
+  color: var(--text);
+  background-color: var(--user-message);
+}
+
+.userMessage::before {
+  background-color: var(--user-message);
+  right: -7px;
+  border-bottom-left-radius: 16px 14px;
+}
+
+.userMessage::after {
+  content: '';
+  background-color: var(--background);
+  width: 26px;
+  position: absolute;
+  bottom: 0;
+  height: 25px;
+  right: -26px;
+  border-bottom-left-radius: 10px;
+}
+
+.aiResponse {
+  background-color: var(--ai-message);
+  padding: 0;
+}
+
+.aiResponse::before {
+  content: '';
+  width: 20px;
+  position: absolute;
+  bottom: 0;
+  height: 25px;
+  background-color: var(--ai-message);
+  left: -7px;
+  border-bottom-right-radius: 16px 14px;
+}
+
+.aiResponse::after {
+  left: -26px;
+  border-bottom-right-radius: 10px;
+  background-color: var(--background);
+}

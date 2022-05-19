@@ -6,28 +6,37 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
     "check-lint": "eslint . --ext .ts --ext .tsx",
     "format": "prettier --write .",
-    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build"
+    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
+    "dotenv-load": "^2.0.1",
+    "express": "^4.18.1",
     "next": "12.1.6",
+    "next-env": "^1.1.1",
+    "next-themes": "^0.2.0",
     "openai": "^2.0.5",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "sharp": "^0.30.4",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@shopify/eslint-plugin": "^41.2.1",
     "@shopify/prettier-config": "^1.1.2",
+    "@types/express": "^4.17.13",
     "@types/node": "17.0.32",
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.3",
+    "@types/uuid": "^8.3.4",
     "eslint": "8.15.0",
     "eslint-config-next": "12.1.6",
-    "husky": "^8.0.1",
+    "husky": "^7.0.0",
     "typescript": "4.6.4"
   },
   "prettier": "@shopify/prettier-config"

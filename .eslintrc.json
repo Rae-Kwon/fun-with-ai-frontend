@@ -9,5 +9,10 @@
   ],
   "parserOptions": {
     "project": "tsconfig.json"
+  },
+  "rules": {
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "@shopify/jsx-no-hardcoded-content": "off"
   }
 }

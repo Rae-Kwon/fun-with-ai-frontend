@@ -1,0 +1,17 @@
+.thumbnail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 520px;
+  height: 386px;
+  max-width: 100%;
+  max-height: 100%;
+  border-bottom: 1px solid var(--line);
+}
+
+.errorIcon {
+  height: 25%;
+  width: 25%;
+}

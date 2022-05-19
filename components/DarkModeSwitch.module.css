@@ -1,0 +1,47 @@
+.darkModeContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+}
+
+.darkModeIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+.darkModeIconContainer:hover {
+  background-color: var(--icon-focus);
+}
+
+.darkModeIconContainer .tooltipText {
+  visibility: hidden;
+  width: max-content;
+  max-width: 100%;
+  background-color: var(--tooltip);
+  opacity: 0.8;
+  color: var(--container);
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  top: 4rem;
+  right: 2vw;
+  z-index: 1;
+  word-wrap: break-word;
+}
+
+.darkModeIconContainer:hover .tooltipText {
+  visibility: visible;
+}
+
+.darkModeIcon {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}

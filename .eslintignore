@@ -1,0 +1,2 @@
+# Ignore next-env as it changes on build
+next-env.d.ts

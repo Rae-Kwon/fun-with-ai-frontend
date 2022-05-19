@@ -1,0 +1,51 @@
+.clearContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+}
+
+.clearButton {
+  display: none;
+}
+
+.clearIcon {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.clearIconContainer {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-color: var(--container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.clearIconContainer:hover {
+  background-color: var(--icon-focus);
+}
+
+.clearIconContainer .tooltipText {
+  visibility: hidden;
+  width: max-content;
+  max-width: 100%;
+  background-color: var(--tooltip);
+  opacity: 0.8;
+  color: var(--tooltip-text);
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  top: 4rem;
+  right: 2vw;
+  z-index: 1;
+  word-wrap: break-word;
+}
+
+.clearIconContainer:hover .tooltipText {
+  visibility: visible;
+}
