@@ -18,7 +18,7 @@
 
 .message::after {
   content: '';
-  background-color: #fff;
+  background-color: var(--container);
   width: 26px;
   position: absolute;
   bottom: 0;
@@ -26,7 +26,7 @@
 }
 
 .aiResponse {
-  background-color: #e4e5eb;
+  background-color: var(--ai-message);
 }
 
 .aiResponse::before {
@@ -35,7 +35,7 @@
   position: absolute;
   bottom: 0;
   height: 25px;
-  background-color: #e4e5eb;
+  background-color: var(--ai-message);
   left: -7px;
   border-bottom-right-radius: 16px 14px;
 }
@@ -43,4 +43,5 @@
 .aiResponse::after {
   left: -26px;
   border-bottom-right-radius: 10px;
+  background-color: var(--background);
 }

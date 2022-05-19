@@ -5,6 +5,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   white-space: normal;
+  background-color: var(--background);
 }
 
 body {
@@ -22,4 +23,38 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --container: #f9f9f9;
+  --header-bottom: #d9d9d9;
+  --user-message: #1982fc;
+  --ai-message: #e4e5eb;
+  --chat: #000000;
+  --chatbar: #808080;
+  --icon-focus: #cccccc;
+  --line: #cccccc;
+  --tooltip: #333333;
+  --text: #000000;
+  --user-message-text: #ffffff;
+  --tooltip-text: #ffffff;
+}
+
+[data-theme='dark'] {
+  --background: #171616;
+  --foreground: #ffffff;
+  --container: #323332;
+  --header-bottom: #323332;
+  --user-message: #1982fc;
+  --ai-message: #323332;
+  --chat: #ffffff;
+  --chatbar: #808080;
+  --icon-focus: #999999;
+  --line: #cccccc;
+  --tooltip: #999999;
+  --text: #ffffff;
+  --user-message-text: #ffffff;
+  --tooltip-text: #ffffff;
 }

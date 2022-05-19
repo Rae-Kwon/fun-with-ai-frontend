@@ -13,23 +13,23 @@
   height: 45px;
   width: 45px;
   border-radius: 50%;
-  background-color: hsl(0, 0%, 100%);
+  background-color: var(--container);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .presetPromptsIconContainer:hover {
-  background-color: hsl(0, 0%, 80%);
+  background-color: var(--icon-focus);
 }
 
 .presetPromptsIconContainer .tooltipText {
   visibility: hidden;
   width: max-content;
   max-width: 100%;
-  background-color: hsl(0, 0%, 20%);
+  background-color: var(--tooltip);
   opacity: 0.8;
-  color: #fff;
+  color: var(--tooltip-text);
   text-align: center;
   padding: 5px;
   border-radius: 6px;

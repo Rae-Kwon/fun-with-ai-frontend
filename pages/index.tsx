@@ -12,6 +12,7 @@ import AiProfile from '../components/AiProfile';
 import WelcomeMessage from '../components/WelcomeMessage';
 import ShowResponse from '../components/ShowResponse';
 import UserPrompt from '../components/UserPrompt';
+import ToggleMode from '../components/ToggleMode';
 import {
   getFromLocalStorage,
   setToLocalStorage,
@@ -74,6 +75,7 @@ const Home: NextPage = () => {
       <div className={styles.chatContainer}>
         <header className={styles.header}>
           <AiProfile />
+          <ToggleMode />
           <ClearStorage
             clear={removeFromLocalStorage}
             setResults={setResults}

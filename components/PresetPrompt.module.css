@@ -1,8 +1,8 @@
 .presetPrompt {
   cursor: pointer;
   user-select: none;
-  color: white;
-  background-color: #1982fc;
+  color: var(--user-message-text);
+  background-color: var(--user-message);
   padding: 0.5rem;
   border-radius: 25px;
   border: none;
@@ -16,6 +16,6 @@
 
 .presetPrompt:focus {
   border: none;
-  outline-color: #0071bc;
+  outline-color: var(--user-message);
   transform: scale(1.25);
 }

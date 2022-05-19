@@ -1,4 +1,4 @@
-.clearContainer {
+.darkModeContainer {
   position: relative;
   display: flex;
   align-items: center;
@@ -6,36 +6,26 @@
   width: 10%;
 }
 
-.clearButton {
-  display: none;
-}
-
-.clearIcon {
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-}
-
-.clearIconContainer {
-  height: 45px;
-  width: 45px;
-  border-radius: 50%;
-  background-color: var(--container);
+.darkModeIconContainer {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
 }
-.clearIconContainer:hover {
+
+.darkModeIconContainer:hover {
   background-color: var(--icon-focus);
 }
 
-.clearIconContainer .tooltipText {
+.darkModeIconContainer .tooltipText {
   visibility: hidden;
   width: max-content;
   max-width: 100%;
   background-color: var(--tooltip);
   opacity: 0.8;
-  color: var(--tooltip-text);
+  color: var(--container);
   text-align: center;
   padding: 5px;
   border-radius: 6px;
@@ -46,6 +36,12 @@
   word-wrap: break-word;
 }
 
-.clearIconContainer:hover .tooltipText {
+.darkModeIconContainer:hover .tooltipText {
   visibility: visible;
+}
+
+.darkModeIcon {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
 }
