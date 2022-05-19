@@ -71,42 +71,49 @@ const Home: NextPage = () => {
   }, [results]);
 
   return (
-    <main className={styles.chatbox}>
-      <div className={styles.chatContainer}>
-        <header className={styles.header}>
-          <AiProfile />
-          <ToggleMode />
-          <ClearStorage
-            clear={removeFromLocalStorage}
-            setResults={setResults}
-          />
-        </header>
-        <section className={styles.chat}>
-          <WelcomeMessage />
-          {[...results].reverse().map(({res, prompt}) => (
-            <React.Fragment key={uuidv4()}>
-              <section key={prompt.id} className={styles.userPrompt}>
-                <UserPrompt message={prompt.message} />
-              </section>
-              <section
-                key={res.id}
-                className={cn(styles.message, styles.aiResponse)}
-              >
-                <ShowResponse res={res} />
-              </section>
-            </React.Fragment>
-          ))}
-          <div className={styles.chatEnd} ref={messageEndRef} />
-        </section>
-        <footer className={styles.chatbar}>
-          <PromptForm
-            submitHandler={submitHandler}
-            userInput={userInput}
-            setUserInput={setUserInput}
-          />
-        </footer>
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Chat with Lil Nost X</title>
+        <link rel="Music note Icon" href="/favicon.ico" />
+        <meta property="og:title" content="Chat with Lil Nost X" key="title" />
+      </Head>
+      <main className={styles.chatbox}>
+        <div className={styles.chatContainer}>
+          <header className={styles.header}>
+            <AiProfile />
+            <ToggleMode />
+            <ClearStorage
+              clear={removeFromLocalStorage}
+              setResults={setResults}
+            />
+          </header>
+          <section className={styles.chat}>
+            <WelcomeMessage />
+            {[...results].reverse().map(({res, prompt}) => (
+              <React.Fragment key={uuidv4()}>
+                <section key={prompt.id} className={styles.userPrompt}>
+                  <UserPrompt message={prompt.message} />
+                </section>
+                <section
+                  key={res.id}
+                  className={cn(styles.message, styles.aiResponse)}
+                >
+                  <ShowResponse res={res} />
+                </section>
+              </React.Fragment>
+            ))}
+            <div className={styles.chatEnd} ref={messageEndRef} />
+          </section>
+          <footer className={styles.chatbar}>
+            <PromptForm
+              submitHandler={submitHandler}
+              userInput={userInput}
+              setUserInput={setUserInput}
+            />
+          </footer>
+        </div>
+      </main>
+    </>
   );
 };
 
