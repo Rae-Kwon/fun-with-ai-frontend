@@ -1,5 +1,11 @@
 # Fun With AI - Frontend
 
+<a href='https://www.youtube.com/watch?v=UTHLKHL_whs'>
+    <img src='README_Assets/lil_nost_x_full_portrait.png' alt='Lil Nost X the AI bot' />
+</a>
+
+<p style='font-size:30px;'> 🔗 <a href='https://bright-cassata-c74c95.netlify.app/'>Demo</a></p>
+
 This repo is for the Fun With AI frontend.
 It lets you talk to Lil Nost X, the illustrious psychic who can give you a song based on your mood! Just type in how you are feeling or choose from a few pre-approved moods selected by the Nost himself.
 
